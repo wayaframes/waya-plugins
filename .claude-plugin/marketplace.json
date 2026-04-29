@@ -1,0 +1,30 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "waya-plugins",
+  "version": "0.1.0",
+  "description": "Free Claude Code plugin marketplace by Waya — skills and tools for founders and operators.",
+  "owner": {
+    "name": "Waya",
+    "email": "wayaframes@gmail.com",
+    "url": "https://github.com/wayaframes"
+  },
+  "metadata": {
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "pre-pmf-starter",
+      "source": "./plugins/pre-pmf-starter",
+      "description": "Starter pack for pre-PMF founders — personal Ikigai, executive summary, mission/values, and OKR workflow.",
+      "category": "founders",
+      "tags": ["founders", "pre-pmf", "strategy", "okrs"]
+    },
+    {
+      "name": "expert-onboarding",
+      "source": "./plugins/expert-onboarding",
+      "description": "Onboarding kit for new Waya expert network members.",
+      "category": "onboarding",
+      "tags": ["onboarding", "experts", "network"]
+    }
+  ]
+}

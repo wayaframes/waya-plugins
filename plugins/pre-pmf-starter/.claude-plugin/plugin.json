@@ -1,0 +1,14 @@
+{
+  "name": "pre-pmf-starter",
+  "version": "0.1.0",
+  "description": "Starter pack for pre-PMF founders. Bundles four skills: personal Ikigai discovery, executive summary, mission and values, and quarterly OKR workflow.",
+  "author": {
+    "name": "Waya",
+    "email": "wayaframes@gmail.com",
+    "url": "https://github.com/wayaframes"
+  },
+  "homepage": "https://github.com/wayaframes/waya-plugins/tree/main/plugins/pre-pmf-starter",
+  "repository": "https://github.com/wayaframes/waya-plugins",
+  "license": "MIT",
+  "keywords": ["founders", "pre-pmf", "ikigai", "okrs", "strategy", "waya"]
+}
