@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/wayaframes/waya-plugins/compare/expert-onboarding-v0.1.1...expert-onboarding-v0.2.0) (2026-04-29)
+
+
+### Features
+
+* **expert-onboarding:** add connectors and placeholder-based references ([649e92b](https://github.com/wayaframes/waya-plugins/commit/649e92b695cb1a92b17bb39c81879318c6117750))
+
 ## [0.1.1](https://github.com/wayaframes/waya-plugins/compare/expert-onboarding-v0.1.0...expert-onboarding-v0.1.1) (2026-04-29)
 
 
