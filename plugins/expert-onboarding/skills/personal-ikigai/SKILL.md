@@ -24,18 +24,19 @@ description: Guide a person through a personal Ikigai discovery process — surf
 
 ## Prerequisite Search Protocol
 
-Before beginning, see if there is existing context that could enrich the session:
+Before beginning, see if there is existing context that could enrich the session. See [CONNECTORS.md](../../CONNECTORS.md) for the placeholder-to-server mapping used below.
 
-1. **Check connected tools.** If any of the following connectors are available in the current environment, offer to search them for prior context:
-   - **Notion** — for prior Ikigai sessions, personal development docs, role descriptions, journals
-   - **Google Drive** — for personal bios, prior assessments, reflection notes
-   - Any other knowledge-base or document connector the user has configured
+1. **Check the current project or workspace.** If running inside a Cowork project or a connected workspace, search the project's knowledge base, files, and prior conversations for related Ikigai work, personal development notes, or role descriptions.
 
-2. **Ask the user directly.** Whether or not connectors are available, ask: "Have you done an Ikigai (or similar) reflection before? If so, would you like to share notes or paste anything to start from?"
+2. **Check connected connectors.** If any of the following are available, offer to search them for prior context:
+   - `~~knowledge base` — for prior Ikigai sessions, personal development docs, journals
+   - `~~cloud storage` — for personal bios, prior assessments, reflection notes
 
-3. **Use what you find to accelerate, not replace.** Prior context can speed up sections where the user has already articulated passions, skills, or purpose — but never skip sections entirely. The value is in the in-session reflection, not just the final output.
+3. **Ask the user directly.** Whether or not anything turned up, ask: "Have you done an Ikigai (or similar) reflection before? If so, would you like to share notes or paste anything to start from?"
 
-If no connectors are available and the user has no prior context, just begin from Stage 1.
+4. **Use what you find to accelerate, not replace.** Prior context can speed up sections where the user has already articulated passions, skills, or purpose — but never skip sections entirely. The value is in the in-session reflection, not just the final output.
+
+If nothing is connected and the user has no prior context, just begin from Stage 1.
 
 ---
 
@@ -92,13 +93,13 @@ Example:
 
 ## Visualization & Final Output
 
-The final Ikigai deliverable can be rendered three ways. Pick the best available based on the user's environment:
+When the framework is complete, render it visually for the user. Default to **inline rendering** so the user stays in the conversation, then offer design-tool export as a follow-up.
 
-1. **Figma or Miro board** — If a Figma or Miro connector is available, offer to render the four-circle Ikigai diagram as a visual board the user can edit and share. This is the richest output.
-2. **Inline rendering** — If running on a surface that supports inline JSX/HTML rendering (e.g. a side panel), render the four-circle Ikigai diagram as SVG or a CSS Venn so the user sees it live.
-3. **Markdown summary** — Always available as fallback. Generate a clean, structured markdown document with all four circles, four intersections, and the center synthesis. Offer to export as a Word document if the user wants a portable file.
+1. **Inline rendering (default).** If the surface supports JSX/HTML rendering in a side panel (e.g. Cowork), render the four-circle Ikigai diagram as SVG or a CSS Venn so the user sees the structure live alongside the conversation.
+2. **Markdown summary (fallback).** If inline rendering is not supported, generate a clean, structured markdown document with all four circles, four intersections, and the center synthesis. Offer to export as a Word document for a portable file.
+3. **Design-tool export (optional follow-up).** After the inline or markdown version lands, ask: *"Want me to also save this to a Figma board (or Canva, Miro) so you have a persistent, editable copy you can share?"* If the user says yes and a `~~design tool` connector is available, render it there.
 
-Ask the user their preference if multiple options are available. Default to a markdown summary if they have no preference.
+Hierarchy: live in the conversation first, persistent design board second. Do not lead with a design-tool render — it interrupts the moment with auth and board-creation friction.
 
 ---
 
@@ -354,11 +355,9 @@ On confirmation, acknowledge and move on.
 
 Apply the Visualization & Final Output section above:
 
-1. If a Figma or Miro connector is available, offer to render the framework as a visual board.
-2. Else, if the surface supports inline JSX/HTML rendering, render the four-circle diagram in the side panel.
-3. Else, generate a clean markdown document. Offer to export as a Word file if the user wants something portable.
-
-Ask the user's preference if more than one option is available.
+1. Default to inline rendering if the surface supports it (side panel JSX/HTML).
+2. Otherwise generate a markdown summary, with optional Word export.
+3. After the user has the visual, ask if they want a persistent copy in a `~~design tool` (Figma, Canva, Miro) for sharing or later editing.
 
 ---
 
