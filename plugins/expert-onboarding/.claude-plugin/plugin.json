@@ -1,6 +1,6 @@
 {
   "name": "expert-onboarding",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Onboarding kit for new Waya expert network members. Starts with personal Ikigai discovery — more skills coming.",
   "author": {
     "name": "Waya",
@@ -10,5 +10,10 @@
   "homepage": "https://github.com/wayaframes/waya-plugins/tree/main/plugins/expert-onboarding",
   "repository": "https://github.com/wayaframes/waya-plugins",
   "license": "MIT",
-  "keywords": ["onboarding", "experts", "ikigai", "waya"]
+  "keywords": [
+    "onboarding",
+    "experts",
+    "ikigai",
+    "waya"
+  ]
 }
