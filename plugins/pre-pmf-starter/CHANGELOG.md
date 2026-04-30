@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.0](https://github.com/wayaframes/waya-plugins/compare/pre-pmf-starter-v0.2.0...pre-pmf-starter-v0.3.0) (2026-04-30)
+
+
+### Features
+
+* **pre-pmf-starter:** port mission-values-guide ([f52e170](https://github.com/wayaframes/waya-plugins/commit/f52e17095c7b591eed23839bac4adae84a30f8f5))
+* **pre-pmf-starter:** port pre-pmf-executive-summary ([2d22e4d](https://github.com/wayaframes/waya-plugins/commit/2d22e4d2358b15f4b538e474ba03fc330ee86b3e))
+
 ## [0.2.0](https://github.com/wayaframes/waya-plugins/compare/pre-pmf-starter-v0.1.0...pre-pmf-starter-v0.2.0) (2026-04-30)
 
 
