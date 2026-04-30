@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/wayaframes/waya-plugins/compare/expert-onboarding-v0.3.0...expert-onboarding-v0.4.0) (2026-04-30)
+
+
+### Features
+
+* **expert-onboarding:** hard rendering rules and reference SVG template ([e6d940f](https://github.com/wayaframes/waya-plugins/commit/e6d940f8136feff533a81bef23cc14413da64884))
+
 ## [0.3.0](https://github.com/wayaframes/waya-plugins/compare/expert-onboarding-v0.2.0...expert-onboarding-v0.3.0) (2026-04-30)
 
 
