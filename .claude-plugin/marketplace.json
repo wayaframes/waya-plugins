@@ -15,14 +15,14 @@
     {
       "name": "pre-pmf-starter",
       "source": "./plugins/pre-pmf-starter",
-      "description": "Starter pack for pre-PMF founders — personal Ikigai, executive summary, mission/values, and OKR workflow.",
+      "description": "The Waya Method starter kit for pre-PMF founders — personal Ikigai discovery, executive summary, mission and values, and quarterly OKR workflow. Four sequential skills that build on each other.",
       "category": "founders",
       "tags": ["founders", "pre-pmf", "strategy", "okrs"]
     },
     {
       "name": "expert-onboarding",
       "source": "./plugins/expert-onboarding",
-      "description": "Onboarding kit for new Waya expert network members.",
+      "description": "The Waya Method onboarding kit for new members of the Waya expert network. A streamlined personal Ikigai discovery, plus more skills coming.",
       "category": "onboarding",
       "tags": ["onboarding", "experts", "network"]
     }

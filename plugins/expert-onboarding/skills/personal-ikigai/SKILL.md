@@ -3,7 +3,7 @@ name: personal-ikigai
 description: Guide a person through a personal Ikigai discovery process — surface what they love, what they are good at, what they can be paid for, and what the world needs, then synthesize the four intersections (Passion, Profession, Mission, Vocation) into a personal Ikigai statement. Use when someone wants to clarify personal alignment with their role or work, articulate what they uniquely bring to a team or network, or surface their strengths and purpose. Output renders as a Figma or Miro board if those connectors are available, otherwise as an inline four-circle diagram or a clean markdown summary that can be exported to Word.
 ---
 
-# Personal Ikigai Guide
+# Waya Method: Personal Ikigai Guide
 
 **Purpose:** Guide a person through a personal Ikigai discovery process to surface their unique alignment of passion, skill, market value, and purpose.
 **Duration:** 60–90 minutes

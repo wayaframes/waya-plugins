@@ -1,15 +1,13 @@
 # pre-pmf-starter
 
-A Claude Code plugin for **pre-product-market-fit founders**.
+The **Waya Method** starter kit for **pre-product-market-fit founders**. A dependency chain of four skills that build on each other to take you from personal alignment through to your first quarterly OKRs.
 
 ## What's inside
 
-A dependency chain of four skills that build on each other, in order:
-
-1. **`personal-ikigai`** — discover personal alignment with the business you're building.
-2. **`pre-pmf-executive-summary`** — turn that alignment into a written executive summary covering idea exploration through seed fundraising.
-3. **`mission-values-guide`** — define a mission statement and 3–7 core values, synthesized from the prior two outputs.
-4. **`okr-workflow-pre-pmf`** — convert mission and values into AI-assisted OKR planning oriented toward discovering PMF.
+1. **`personal-ikigai`** ✅ — discover personal alignment with the business you're building (or considering). Surfaces your four circles (Love, Good At, Paid For, World Needs), four intersections (Passion, Profession, Mission, Vocation), and a center Ikigai statement. Then assesses fit with your existing business idea or generates 3–5 directions if you have none.
+2. **`pre-pmf-executive-summary`** 🚧 — turn the validated business direction into a complete executive summary covering idea exploration through seed fundraising.
+3. **`mission-values-guide`** 🚧 — define a mission statement and 3–7 core values, synthesized from your Ikigai and executive summary.
+4. **`okr-workflow-pre-pmf`** 🚧 — convert mission and values into AI-assisted OKR planning oriented toward discovering PMF.
 
 ## Install
 
@@ -18,9 +16,19 @@ A dependency chain of four skills that build on each other, in order:
 /plugin install pre-pmf-starter@waya-plugins
 ```
 
+## Connectors
+
+The plugin pre-registers and uses these MCP connectors when available:
+
+- **Knowledge base** (`~~knowledge base`) — Notion, Atlassian (Confluence)
+- **Cloud storage** (`~~cloud storage`) — Box, Egnyte
+- **Design tool** (`~~design tool`) — Figma, Canva (used optionally for the Ikigai board)
+
+The plugin works without any connector. See [CONNECTORS.md](./CONNECTORS.md) for full details.
+
 ## Status
 
-`v0.1.0` — scaffolded. Skill content forthcoming.
+`personal-ikigai` is shipped. The other three skills are forthcoming — see the per-skill README badges above.
 
 ## License
 
