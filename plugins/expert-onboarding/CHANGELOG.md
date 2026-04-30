@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/wayaframes/waya-plugins/compare/expert-onboarding-v0.4.0...expert-onboarding-v0.5.0) (2026-04-30)
+
+
+### Features
+
+* **pre-pmf-starter:** port founder personal-ikigai + Waya Method branding ([d442b60](https://github.com/wayaframes/waya-plugins/commit/d442b60822e734c4180f2f4de0325227abdb4355))
+
 ## [0.4.0](https://github.com/wayaframes/waya-plugins/compare/expert-onboarding-v0.3.0...expert-onboarding-v0.4.0) (2026-04-30)
 
 
