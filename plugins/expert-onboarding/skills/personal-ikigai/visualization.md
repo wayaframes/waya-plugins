@@ -6,6 +6,37 @@ This document specifies how to render the Ikigai diagram. The skill produces a *
 
 ---
 
+## Rendering Rules (Hard Requirements)
+
+These are correctness rules, not polish. Every rendered output must satisfy all of them.
+
+### 1. Items live inside their circles, not in a list below
+
+User-generated items render as `<text>` / `<tspan>` elements positioned at each circle's outer-crescent anchor (see § Layout). Do **not** also emit a parallel `<ul>`, `<div>`, or markdown list of items below or beside the diagram. Items appear in exactly one place: inside the circles. A list below the diagram defeats the purpose of the visualization.
+
+### 2. Use the exact hex colors
+
+Use these hex values exactly — for circle borders, legend swatches, section headers, and any accent text. Do not substitute generic pinks, blues, greens, or yellows.
+
+- Love: `#c25450`
+- Good At: `#4a7fb8`
+- Paid For: `#c9a23a`
+- World Needs: `#5a9d6e`
+
+### 3. Pass HTML / SVG content directly — no escape wrappers
+
+When rendering through any visualization tool that accepts HTML or SVG strings (Cowork's `show_widget`, similar host tools), pass the content directly: `<style>...</style><div>...<svg>...</svg></div>` as a literal string. Do **not** wrap in `CDATA`, template literals, JSON-encoded strings, HTML-entity escapes, or any other transport-layer wrapper. Most renderers expect raw HTML and will display escape syntax as visible garbage if it leaks through.
+
+### 4. The `<style>` block is a real `<style>` element
+
+Not stripped, escaped, or rendered as visible text. If CSS source appears as text in the output, that's a render bug — fix the transport, do not work around it.
+
+### 5. Single artifact, no double-render
+
+On surfaces that support in-place artifact updates, emit the artifact once at Stage 2A and update in place at each subsequent stage. Never emit a fresh second copy alongside an existing one.
+
+---
+
 ## Surface detection
 
 Pick the best rendering path based on what the host supports:
@@ -158,13 +189,119 @@ Use the four hex colors as visual swatches.
 
 ---
 
-## Polish requirements
+## Polish (recommendations)
 
-- **No raw CSS visible to the user.** The `<style>` block must be a real `<style>` element, not stripped or HTML-escaped. Verify every render.
-- **Color encoding consistency.** Same hex applied to the circle border, the legend swatch, the section header, and any accent text. Don't drift.
-- **Empty-state legibility.** Dashed-circle placeholders must remain visible against the canvas background.
-- **One source of truth for items.** Items live inside their circles. Do **not** also render a parallel markdown list of items below the diagram — that doubles cognitive load.
-- **No double-render.** On surfaces that support in-place update, never emit a second copy of the artifact.
+The Hard Requirements section above covers correctness. These are smaller polish items:
+
+- **Empty-state legibility.** Dashed-circle placeholders must remain visible against the canvas background — light grey on white is too subtle. Use the section's hex at ~40% opacity for the dashed stroke so the circle is still locatable but reads as "not yet."
+- **Center reveal feels like an arrival.** The 400ms ease-in is intentional — don't shorten it. The user just spent an hour on this; let the moment land.
+- **Font choice.** System sans (`ui-sans-serif, system-ui, sans-serif`) is fine. Avoid display fonts that hurt readability at narrow widths.
+- **Spacing between stacked items.** ~16px between item lines inside a circle. Too tight reads as a wall of text; too loose pushes items out of the crescent.
+
+---
+
+## Reference Template
+
+Below is the canonical structure for the rendered artifact. **Adapt** by substituting the placeholder values (`{LOVE_ITEM_1}`, `{PASSION_SYNTHESIS}`, etc.) with the user's content. Keep the structure, geometry, and class names as-is.
+
+```html
+<style>
+  .ikigai-canvas { font-family: ui-sans-serif, system-ui, sans-serif; max-width: 100%; }
+  .ikigai-svg { width: 100%; height: auto; display: block; }
+  .circle-love     { fill: #c25450; fill-opacity: 0.12; stroke: #c25450; stroke-width: 3; }
+  .circle-good-at  { fill: #4a7fb8; fill-opacity: 0.12; stroke: #4a7fb8; stroke-width: 3; }
+  .circle-paid-for { fill: #c9a23a; fill-opacity: 0.12; stroke: #c9a23a; stroke-width: 3; }
+  .circle-needs    { fill: #5a9d6e; fill-opacity: 0.12; stroke: #5a9d6e; stroke-width: 3; }
+  .circle-empty    { fill: none !important; stroke-dasharray: 8 6; opacity: 0.4; }
+  .item-text       { font-size: 14px; fill: #333; }
+  .label-text      { font-size: 16px; font-weight: 600; }
+  .lens-label      { font-size: 14px; font-weight: 600; fill: #555; }
+  .lens-synthesis  { font-size: 12px; fill: #555; }
+  .center-circle   { fill: #ffffff; stroke: #888; stroke-width: 1.5; opacity: 0; transition: opacity 400ms ease-in; }
+  .center-circle.revealed { opacity: 1; }
+  .center-text     { font-size: 13px; fill: #222; font-weight: 700; opacity: 0; transition: opacity 400ms ease-in; text-transform: uppercase; letter-spacing: 1px; }
+  .center-text.revealed { opacity: 1; }
+  .ikigai-callout  { margin-top: 16px; padding: 16px; border-left: 4px solid #888; font-size: 18px; line-height: 1.4; opacity: 0; transition: opacity 400ms ease-in; }
+  .ikigai-callout.revealed { opacity: 1; }
+  .legend          { display: flex; gap: 16px; font-size: 13px; margin-bottom: 12px; flex-wrap: wrap; }
+  .legend-swatch   { display: inline-block; width: 12px; height: 12px; border-radius: 50%; vertical-align: middle; margin-right: 4px; }
+</style>
+
+<div class="ikigai-canvas">
+  <div class="legend">
+    <span><span class="legend-swatch" style="background:#c25450"></span>Love</span>
+    <span><span class="legend-swatch" style="background:#4a7fb8"></span>Good At</span>
+    <span><span class="legend-swatch" style="background:#c9a23a"></span>Paid For</span>
+    <span><span class="legend-swatch" style="background:#5a9d6e"></span>World Needs</span>
+  </div>
+
+  <svg class="ikigai-svg" viewBox="0 0 1100 900" preserveAspectRatio="xMidYMid meet">
+    <!-- CIRCLES — add class="circle-empty" for any section not yet confirmed -->
+    <circle cx="550" cy="290" r="260" class="circle-love" />
+    <circle cx="770" cy="470" r="260" class="circle-good-at" />
+    <circle cx="550" cy="650" r="260" class="circle-paid-for circle-empty" />
+    <circle cx="330" cy="470" r="260" class="circle-needs circle-empty" />
+
+    <!-- SECTION LABELS — outside the diagram, color-coded -->
+    <text x="550" y="40"  text-anchor="middle" class="label-text" fill="#c25450">WHAT YOU LOVE</text>
+    <text x="1080" y="470" text-anchor="end"   class="label-text" fill="#4a7fb8">WHAT YOU'RE GOOD AT</text>
+    <text x="550" y="880" text-anchor="middle" class="label-text" fill="#c9a23a">WHAT YOU CAN BE PAID FOR</text>
+    <text x="20"  y="470" text-anchor="start"  class="label-text" fill="#5a9d6e">WHAT THE WORLD NEEDS</text>
+
+    <!-- ITEMS INSIDE CIRCLES — repeat <text> per item, stack vertically in the crescent.
+         Wrap long items with <tspan dy="16">. Max 28 chars per line, 2 lines. -->
+    <!-- Love crescent (anchor 550,130, text-anchor=middle, stack downward) -->
+    <text x="550" y="130" text-anchor="middle" class="item-text">{LOVE_ITEM_1}</text>
+    <text x="550" y="150" text-anchor="middle" class="item-text">{LOVE_ITEM_2}</text>
+    <text x="550" y="170" text-anchor="middle" class="item-text">{LOVE_ITEM_3}</text>
+
+    <!-- Good At crescent (anchor 920,470, text-anchor=end, stack downward) -->
+    <text x="920" y="450" text-anchor="end" class="item-text">{GOOD_AT_ITEM_1}</text>
+    <text x="920" y="470" text-anchor="end" class="item-text">{GOOD_AT_ITEM_2}</text>
+    <text x="920" y="490" text-anchor="end" class="item-text">{GOOD_AT_ITEM_3}</text>
+
+    <!-- Paid For crescent (anchor 550,800, text-anchor=middle, stack upward) -->
+    <text x="550" y="780" text-anchor="middle" class="item-text">{PAID_FOR_ITEM_1}</text>
+    <text x="550" y="800" text-anchor="middle" class="item-text">{PAID_FOR_ITEM_2}</text>
+    <text x="550" y="820" text-anchor="middle" class="item-text">{PAID_FOR_ITEM_3}</text>
+
+    <!-- World Needs crescent (anchor 180,470, text-anchor=start, stack downward) -->
+    <text x="180" y="450" text-anchor="start" class="item-text">{NEEDS_ITEM_1}</text>
+    <text x="180" y="470" text-anchor="start" class="item-text">{NEEDS_ITEM_2}</text>
+    <text x="180" y="490" text-anchor="start" class="item-text">{NEEDS_ITEM_3}</text>
+
+    <!-- INTERSECTION LABELS — in the lens overlap regions, with synthesis below -->
+    <text x="680" y="355" text-anchor="middle" class="lens-label">PASSION</text>
+    <text x="680" y="372" text-anchor="middle" class="lens-synthesis">{PASSION_SYNTHESIS}</text>
+
+    <text x="680" y="575" text-anchor="middle" class="lens-label">PROFESSION</text>
+    <text x="680" y="592" text-anchor="middle" class="lens-synthesis">{PROFESSION_SYNTHESIS}</text>
+
+    <text x="420" y="355" text-anchor="middle" class="lens-label">MISSION</text>
+    <text x="420" y="372" text-anchor="middle" class="lens-synthesis">{MISSION_SYNTHESIS}</text>
+
+    <text x="420" y="575" text-anchor="middle" class="lens-label">VOCATION</text>
+    <text x="420" y="592" text-anchor="middle" class="lens-synthesis">{VOCATION_SYNTHESIS}</text>
+
+    <!-- CENTER IKIGAI — add 'revealed' class to circle and text on Stage 4 confirmation -->
+    <circle cx="550" cy="470" r="75" class="center-circle" />
+    <text x="550" y="475" text-anchor="middle" class="center-text">IKIGAI</text>
+  </svg>
+
+  <!-- CENTER CALLOUT — add 'revealed' class on Stage 4 confirmation -->
+  <div class="ikigai-callout">
+    <strong>Your Ikigai:</strong> {CENTER_IKIGAI_STATEMENT}
+  </div>
+</div>
+```
+
+### How to adapt the template
+
+- **Empty state**: any circle whose section isn't yet confirmed gets `circle-empty` added to its class list. Remove the class once the section is confirmed.
+- **Items**: emit one `<text>` element per item, vertically stacked in the crescent at the anchor for that circle. For items long enough to wrap, use `<tspan dy="16">` for the second line; keep a 2-line maximum.
+- **Intersection synthesis**: shorten the user's confirmed synthesis statement to fit two lines max in the lens. If it can't, abbreviate — the full version lives in the textual recap at Stage 5.
+- **Center reveal (Stage 4)**: add `revealed` class to `.center-circle`, `.center-text`, and `.ikigai-callout`. CSS handles the 400ms fade.
+- **Forbidden**: do NOT also output a `<div>` or markdown list of items below this artifact. The SVG is the only place items render.
 
 ---
 
