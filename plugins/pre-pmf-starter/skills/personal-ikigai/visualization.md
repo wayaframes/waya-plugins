@@ -18,10 +18,10 @@ User-generated items render as `<text>` / `<tspan>` elements positioned at each 
 
 Use these hex values exactly — for circle borders, legend swatches, section headers, and any accent text. Do not substitute generic pinks, blues, greens, or yellows.
 
-- Love: `#c25450`
-- Good At: `#4a7fb8`
-- Paid For: `#c9a23a`
-- World Needs: `#5a9d6e`
+- Love: `#902913`
+- Good At: `#759C8B`
+- Paid For: `#F3B742`
+- World Needs: `#C37028`
 
 ### 3. Pass HTML / SVG content directly — no escape wrappers
 
@@ -98,12 +98,12 @@ Use these exact hex values everywhere — circle border, legend swatch, section 
 
 | Section | Hex |
 | --- | --- |
-| Love | `#c25450` |
-| Good At | `#4a7fb8` |
-| Paid For | `#c9a23a` |
-| World Needs | `#5a9d6e` |
+| Love | `#902913` |
+| Good At | `#759C8B` |
+| Paid For | `#F3B742` |
+| World Needs | `#C37028` |
 
-Center circle: `#ffffff` fill with thin neutral-grey border `#888` once revealed.
+Center circle: `#F1EFDD` (Beige) fill with `#39403A` (Charcoal) border once revealed.
 
 ---
 
@@ -208,22 +208,22 @@ Below is the canonical structure for the rendered artifact. **Adapt** by substit
 
 ```html
 <style>
-  .ikigai-canvas { font-family: ui-sans-serif, system-ui, sans-serif; max-width: 100%; }
+  .ikigai-canvas { font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif; color: #39403A; background: #F1EFDD; max-width: 100%; padding: 16px; }
   .ikigai-svg { width: 100%; height: auto; display: block; }
-  .circle-love     { fill: #c25450; fill-opacity: 0.12; stroke: #c25450; stroke-width: 3; }
-  .circle-good-at  { fill: #4a7fb8; fill-opacity: 0.12; stroke: #4a7fb8; stroke-width: 3; }
-  .circle-paid-for { fill: #c9a23a; fill-opacity: 0.12; stroke: #c9a23a; stroke-width: 3; }
-  .circle-needs    { fill: #5a9d6e; fill-opacity: 0.12; stroke: #5a9d6e; stroke-width: 3; }
+  .circle-love     { fill: #902913; fill-opacity: 0.12; stroke: #902913; stroke-width: 3; }
+  .circle-good-at  { fill: #759C8B; fill-opacity: 0.12; stroke: #759C8B; stroke-width: 3; }
+  .circle-paid-for { fill: #F3B742; fill-opacity: 0.12; stroke: #F3B742; stroke-width: 3; }
+  .circle-needs    { fill: #C37028; fill-opacity: 0.12; stroke: #C37028; stroke-width: 3; }
   .circle-empty    { fill: none !important; stroke-dasharray: 8 6; opacity: 0.4; }
-  .item-text       { font-size: 14px; fill: #333; }
+  .item-text       { font-size: 14px; fill: #39403A; }
   .label-text      { font-size: 16px; font-weight: 600; }
   .lens-label      { font-size: 14px; font-weight: 600; fill: #555; }
   .lens-synthesis  { font-size: 12px; fill: #555; }
-  .center-circle   { fill: #ffffff; stroke: #888; stroke-width: 1.5; opacity: 0; transition: opacity 400ms ease-in; }
+  .center-circle   { fill: #F1EFDD; stroke: #39403A; stroke-width: 1.5; opacity: 0; transition: opacity 400ms ease-in; }
   .center-circle.revealed { opacity: 1; }
-  .center-text     { font-size: 13px; fill: #222; font-weight: 700; opacity: 0; transition: opacity 400ms ease-in; text-transform: uppercase; letter-spacing: 1px; }
+  .center-text     { font-size: 13px; fill: #39403A; font-weight: 700; opacity: 0; transition: opacity 400ms ease-in; text-transform: uppercase; letter-spacing: 1px; }
   .center-text.revealed { opacity: 1; }
-  .ikigai-callout  { margin-top: 16px; padding: 16px; border-left: 4px solid #888; font-size: 18px; line-height: 1.4; opacity: 0; transition: opacity 400ms ease-in; }
+  .ikigai-callout  { margin-top: 16px; padding: 16px; border-left: 4px solid #39403A; font-size: 18px; line-height: 1.4; opacity: 0; transition: opacity 400ms ease-in; color: #39403A; }
   .ikigai-callout.revealed { opacity: 1; }
   .legend          { display: flex; gap: 16px; font-size: 13px; margin-bottom: 12px; flex-wrap: wrap; }
   .legend-swatch   { display: inline-block; width: 12px; height: 12px; border-radius: 50%; vertical-align: middle; margin-right: 4px; }
@@ -231,10 +231,10 @@ Below is the canonical structure for the rendered artifact. **Adapt** by substit
 
 <div class="ikigai-canvas">
   <div class="legend">
-    <span><span class="legend-swatch" style="background:#c25450"></span>Love</span>
-    <span><span class="legend-swatch" style="background:#4a7fb8"></span>Good At</span>
-    <span><span class="legend-swatch" style="background:#c9a23a"></span>Paid For</span>
-    <span><span class="legend-swatch" style="background:#5a9d6e"></span>World Needs</span>
+    <span><span class="legend-swatch" style="background:#902913"></span>Love</span>
+    <span><span class="legend-swatch" style="background:#759C8B"></span>Good At</span>
+    <span><span class="legend-swatch" style="background:#F3B742"></span>Paid For</span>
+    <span><span class="legend-swatch" style="background:#C37028"></span>World Needs</span>
   </div>
 
   <svg class="ikigai-svg" viewBox="0 0 1100 900" preserveAspectRatio="xMidYMid meet">
@@ -245,10 +245,10 @@ Below is the canonical structure for the rendered artifact. **Adapt** by substit
     <circle cx="330" cy="470" r="260" class="circle-needs circle-empty" />
 
     <!-- SECTION LABELS — outside the diagram, color-coded -->
-    <text x="550" y="40"  text-anchor="middle" class="label-text" fill="#c25450">WHAT YOU LOVE</text>
-    <text x="1080" y="470" text-anchor="end"   class="label-text" fill="#4a7fb8">WHAT YOU'RE GOOD AT</text>
-    <text x="550" y="880" text-anchor="middle" class="label-text" fill="#c9a23a">WHAT YOU CAN BE PAID FOR</text>
-    <text x="20"  y="470" text-anchor="start"  class="label-text" fill="#5a9d6e">WHAT THE WORLD NEEDS</text>
+    <text x="550" y="40"  text-anchor="middle" class="label-text" fill="#902913">WHAT YOU LOVE</text>
+    <text x="1080" y="470" text-anchor="end"   class="label-text" fill="#759C8B">WHAT YOU'RE GOOD AT</text>
+    <text x="550" y="880" text-anchor="middle" class="label-text" fill="#F3B742">WHAT YOU CAN BE PAID FOR</text>
+    <text x="20"  y="470" text-anchor="start"  class="label-text" fill="#C37028">WHAT THE WORLD NEEDS</text>
 
     <!-- ITEMS INSIDE CIRCLES — repeat <text> per item, stack vertically in the crescent.
          Wrap long items with <tspan dy="16">. Max 28 chars per line, 2 lines. -->

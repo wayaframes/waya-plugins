@@ -18,12 +18,14 @@ When a section is `in_progress`, its field indicators (filled / unfilled circles
 
 These are correctness, not aesthetics — the brand palette is a deliberate design choice for this artifact.
 
-- Grey (not started): `#383F3B`
-- Green (completed): `#6A9D8A`
-- Light Green (completed background): `#D3E9E0`
-- Orange (in-progress header): `#D16C02`
-- Beige (field labels / subtle accents): `#D0AE89`
-- Yellow (progress bar fill): `#EAB62F`
+- Charcoal (not started): `#39403A`
+- Muted Turquoise (completed): `#759C8B`
+- Beige (completed background): `#F1EFDD`
+- Burnt Orange (in-progress header): `#C37028`
+- Field-label muted text: `rgba(57, 64, 58, 0.65)` (charcoal at 65% opacity)
+- Yellow (progress bar fill): `#F3B742`
+
+This is the canonical Waya brand palette, shared with `mission-values-guide` and `okr-workflow-pre-pmf`.
 
 Do not substitute generic greys, greens, or yellows. These hexes must apply to backgrounds, borders, text accents, and progress fill consistently.
 
@@ -45,7 +47,7 @@ Exactly one section has status `in_progress`. All others are either `complete` (
 
 ### 7. Completed sections are collapsed; only headers visible
 
-Once a section transitions from `in_progress` to `complete`, its fields collapse and only the section header (now green with `#D3E9E0` background) remains visible. Do not re-expand completed sections. The user can see at most: one previous (completed) section header, the full current section with fields, and one next (not started) section header — all fitting within the visible page area.
+Once a section transitions from `in_progress` to `complete`, its fields collapse and only the section header (now green with `#F1EFDD` background) remains visible. Do not re-expand completed sections. The user can see at most: one previous (completed) section header, the full current section with fields, and one next (not started) section header — all fitting within the visible page area.
 
 ### 8. No emojis anywhere in the progress bar
 
@@ -110,14 +112,14 @@ Each section header shows: section number, section name, status indicator (color
 
 For each field in the currently-in-progress section:
 
-- **Filled circle** (`#6A9D8A` green): field has been captured. Display with a short inline summary of the captured value (truncate to ~50 chars).
-- **Unfilled circle** (`#383F3B` grey outline only, transparent fill): field is pending.
+- **Filled circle** (`#759C8B` green): field has been captured. Display with a short inline summary of the captured value (truncate to ~50 chars).
+- **Unfilled circle** (`#39403A` grey outline only, transparent fill): field is pending.
 
-Use `#D0AE89` beige for the field label text. Keep summaries terse — this is a status indicator, not the document.
+Use `rgba(57, 64, 58, 0.65)` beige for the field label text. Keep summaries terse — this is a status indicator, not the document.
 
 ### Progress bar fill
 
-Above or below the section list (designer's choice — pick what reads best at narrow widths), include a thin overall progress bar. Fill color: `#EAB62F` yellow. Width corresponds to `(completed sections / 7) × 100%`.
+Above or below the section list (designer's choice — pick what reads best at narrow widths), include a thin overall progress bar. Fill color: `#F3B742` yellow. Width corresponds to `(completed sections / 7) × 100%`.
 
 ---
 
@@ -126,7 +128,7 @@ Above or below the section list (designer's choice — pick what reads best at n
 ### `not_started` (default)
 
 - Section header background: white or very light neutral
-- Section header text: `#383F3B` grey
+- Section header text: `#39403A` grey
 - No expand caret
 - No fields visible
 - No interaction affordance
@@ -134,14 +136,14 @@ Above or below the section list (designer's choice — pick what reads best at n
 ### `in_progress`
 
 - Section header background: white
-- Section header text: `#D16C02` orange (the only orange-text moment in the artifact — strong signal)
+- Section header text: `#C37028` orange (the only orange-text moment in the artifact — strong signal)
 - Section is **expanded** — all fields render below the header
 - Fields show filled / unfilled circles plus captured summaries
 
 ### `complete`
 
-- Section header background: `#D3E9E0` light green
-- Section header text: `#6A9D8A` green
+- Section header background: `#F1EFDD` light green
+- Section header text: `#759C8B` green
 - Section is **collapsed** — no fields visible
 - Optional: small green checkmark or completion indicator (without using emoji — use a CSS-drawn checkmark or just the color shift)
 
@@ -150,9 +152,9 @@ Above or below the section list (designer's choice — pick what reads best at n
 When a section completes:
 
 1. The section's fields collapse (animate height to 0 over 300ms)
-2. The header background transitions from white to `#D3E9E0`
-3. The header text color shifts from `#D16C02` to `#6A9D8A`
-4. The next section's header text shifts from `#383F3B` grey to `#D16C02` orange and its fields expand (300ms animation)
+2. The header background transitions from white to `#F1EFDD`
+3. The header text color shifts from `#C37028` to `#759C8B`
+4. The next section's header text shifts from `#39403A` grey to `#C37028` orange and its fields expand (300ms animation)
 5. The overall progress bar fill animates from `(N-1)/7` to `N/7`
 
 All transitions ~300ms ease-in-out. Snappy enough to feel responsive, slow enough to register the change.
@@ -207,7 +209,7 @@ The Hard Requirements section above covers correctness. These are smaller polish
 - **Animation timing.** 300ms ease-in-out on state transitions. Long enough to register, short enough to stay responsive.
 - **Font choice.** System sans (`ui-sans-serif, system-ui, sans-serif`). Avoid display fonts.
 - **Spacing.** Generous padding inside in-progress section so fields don't read as cramped. Tight padding on collapsed sections so the user can see context.
-- **Visual hierarchy.** Section number small, section name large. Field labels (`#D0AE89` beige) smaller than captured summaries (default text color).
+- **Visual hierarchy.** Section number small, section name large. Field labels (`rgba(57, 64, 58, 0.65)` beige) smaller than captured summaries (default text color).
 - **No skeumorphism.** Clean flat design. The brand colors do the work.
 
 ---
@@ -220,7 +222,7 @@ Below is the canonical structure for the rendered artifact. **Adapt** by substit
 <style>
   .pmf-progress-canvas { font-family: ui-sans-serif, system-ui, sans-serif; max-width: 100%; padding: 16px; }
   .pmf-overall-bar { width: 100%; height: 6px; background: #f0f0f0; border-radius: 3px; margin-bottom: 16px; overflow: hidden; }
-  .pmf-overall-fill { height: 100%; background: #EAB62F; transition: width 300ms ease-in-out; }
+  .pmf-overall-fill { height: 100%; background: #F3B742; transition: width 300ms ease-in-out; }
   .pmf-section { margin-bottom: 8px; border-radius: 6px; overflow: hidden; transition: background 300ms ease-in-out; }
   .pmf-section-header { display: flex; align-items: center; padding: 12px 14px; cursor: default; transition: color 300ms ease-in-out; }
   .pmf-section-num { font-size: 13px; opacity: 0.7; margin-right: 10px; min-width: 20px; }
@@ -230,23 +232,23 @@ Below is the canonical structure for the rendered artifact. **Adapt** by substit
 
   /* not_started */
   .pmf-section.not-started { background: #ffffff; }
-  .pmf-section.not-started .pmf-section-header { color: #383F3B; }
+  .pmf-section.not-started .pmf-section-header { color: #39403A; }
 
   /* in_progress */
   .pmf-section.in-progress { background: #ffffff; }
-  .pmf-section.in-progress .pmf-section-header { color: #D16C02; }
+  .pmf-section.in-progress .pmf-section-header { color: #C37028; }
 
   /* complete */
-  .pmf-section.complete { background: #D3E9E0; }
-  .pmf-section.complete .pmf-section-header { color: #6A9D8A; }
+  .pmf-section.complete { background: #F1EFDD; }
+  .pmf-section.complete .pmf-section-header { color: #759C8B; }
   .pmf-section.complete .pmf-section-fields { max-height: 0; }
 
   /* fields */
   .pmf-field { display: flex; align-items: flex-start; margin: 6px 0; font-size: 13px; }
-  .pmf-field-circle { width: 12px; height: 12px; border-radius: 50%; margin-right: 10px; margin-top: 4px; flex-shrink: 0; border: 1.5px solid #383F3B; background: transparent; }
-  .pmf-field.captured .pmf-field-circle { background: #6A9D8A; border-color: #6A9D8A; }
-  .pmf-field-label { color: #D0AE89; font-weight: 500; min-width: 130px; }
-  .pmf-field-value { color: #383F3B; flex: 1; }
+  .pmf-field-circle { width: 12px; height: 12px; border-radius: 50%; margin-right: 10px; margin-top: 4px; flex-shrink: 0; border: 1.5px solid #39403A; background: transparent; }
+  .pmf-field.captured .pmf-field-circle { background: #759C8B; border-color: #759C8B; }
+  .pmf-field-label { color: rgba(57, 64, 58, 0.65); font-weight: 500; min-width: 130px; }
+  .pmf-field-value { color: #39403A; flex: 1; }
 </style>
 
 <div class="pmf-progress-canvas">
@@ -331,9 +333,9 @@ The visualization is correct when:
 
 1. The progress bar appears after **Section 1, Question 1 is answered** (not on the first message).
 2. Exactly one section is `in_progress` at any time, with its fields visible.
-3. Completed sections are collapsed (`#D3E9E0` background) with only the header visible.
+3. Completed sections are collapsed (`#F1EFDD` background) with only the header visible.
 4. Not-started sections are collapsed and grey-text headers only.
-5. The four state colors (`#383F3B`, `#6A9D8A`, `#D3E9E0`, `#D16C02`) and the progress fill (`#EAB62F`) are applied exactly — no substituted greys/greens/yellows.
+5. The four state colors (`#39403A`, `#759C8B`, `#F1EFDD`, `#C37028`) and the progress fill (`#F3B742`) are applied exactly — no substituted greys/greens/yellows.
 6. The artifact renders cleanly at 480px without text overflow or unreadable fonts.
 7. No emoji glyphs anywhere in the progress bar.
 8. No raw CSS, unescaped HTML, or dangling markup is visible to the user at any stage.
