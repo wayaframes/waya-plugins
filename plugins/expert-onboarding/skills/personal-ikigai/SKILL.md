@@ -93,13 +93,17 @@ Example:
 
 ## Visualization & Final Output
 
-When the framework is complete, render it visually for the user. Default to **inline rendering** so the user stays in the conversation, then offer design-tool export as a follow-up.
+The Ikigai is rendered as a **single live artifact** that the user watches fill in stage by stage — not as an end-of-session summary. The artifact appears at Stage 2A confirmation and updates in place through Stage 4.
 
-1. **Inline rendering (default).** If the surface supports JSX/HTML rendering in a side panel (e.g. Cowork), render the four-circle Ikigai diagram as SVG or a CSS Venn so the user sees the structure live alongside the conversation.
-2. **Markdown summary (fallback).** If inline rendering is not supported, generate a clean, structured markdown document with all four circles, four intersections, and the center synthesis. Offer to export as a Word document for a portable file.
-3. **Design-tool export (optional follow-up).** After the inline or markdown version lands, ask: *"Want me to also save this to a Figma board (or Canva, Miro) so you have a persistent, editable copy you can share?"* If the user says yes and a `~~design tool` connector is available, render it there.
+**See [visualization.md](./visualization.md)** for the full rendering specification — geometry, colors, text anchors, state styles (dashed/empty vs. solid/filled), responsive layout, the update sequence, and acceptance criteria.
 
-Hierarchy: live in the conversation first, persistent design board second. Do not lead with a design-tool render — it interrupts the moment with auth and board-creation friction.
+Surface fallback hierarchy:
+
+1. **Persistent inline artifact (preferred)** — surface supports JSX / HTML / SVG with update-in-place (Cowork side panel, etc.). Render once at Stage 2A; update incrementally through Stage 4.
+2. **Re-render fallback** — surface supports inline rendering but cannot update artifacts in place. Re-render the full diagram at each confirmation.
+3. **Markdown only** — surface does not support inline rendering at all. Skip the visual entirely; deliver the markdown summary at Stage 5 and offer Word export.
+
+After the inline visual lands, **always offer** a follow-up persistent copy in a `~~design tool` (Figma, Canva, Miro) — see Stage 5. Don't lead with design-tool render; it interrupts the moment with auth and board-creation friction.
 
 ---
 
@@ -160,7 +164,7 @@ Take 2–3 minutes to think about this. There are no wrong answers."
 
 Would you add or change anything, or is this list correct?"
 
-On confirmation, acknowledge and move on.
+On confirmation, acknowledge briefly, then **render the Ikigai artifact for the first time** with the Love circle populated and the other three circles in their empty/dashed state (see [visualization.md](./visualization.md) § Update sequence). Then move on.
 
 ---
 
@@ -193,6 +197,8 @@ Take a few minutes."
 
 Anything to add or refine?"
 
+On confirmation, acknowledge, **update the Ikigai artifact** to populate the Good At circle (see [visualization.md](./visualization.md)), and move on.
+
 ---
 
 ### Section 2C: What You Can Be PAID FOR
@@ -224,6 +230,8 @@ What comes to mind?"
 
 Does this feel accurate?"
 
+On confirmation, acknowledge, **update the Ikigai artifact** to populate the Paid For circle (see [visualization.md](./visualization.md)), and move on.
+
 ---
 
 ### Section 2D: What The World NEEDS
@@ -251,6 +259,8 @@ Does this feel accurate?"
 
 Anything else?"
 
+On confirmation, acknowledge, **update the Ikigai artifact** to populate the World Needs circle. All four core circles are now filled (see [visualization.md](./visualization.md)). Move on.
+
 ---
 
 ## Stage 3: Four Intersection Sections
@@ -270,7 +280,7 @@ Based on the overlap between "What You Love" and "What You're Good At," propose 
 
 Do these feel accurate, or would you change anything?"
 
-On confirmation, acknowledge and move on.
+On confirmation, acknowledge, **update the Ikigai artifact** to reveal the Passion label and synthesis in its lens (see [visualization.md](./visualization.md)), and move on.
 
 ---
 
@@ -280,7 +290,7 @@ On confirmation, acknowledge and move on.
 
 Propose 1–3 Profession statements (5–15 words each) that connect skills with market value. Focus on realistic, market-aligned roles or services.
 
-Present, refine, confirm.
+Present, refine, confirm. On confirmation, **update the Ikigai artifact** to reveal the Profession label and synthesis in its lens (see [visualization.md](./visualization.md)), and move on.
 
 ---
 
@@ -290,7 +300,7 @@ Present, refine, confirm.
 
 Propose 1–3 Mission statements (5–15 words each).
 
-Present, refine, confirm.
+Present, refine, confirm. On confirmation, **update the Ikigai artifact** to reveal the Mission label and synthesis in its lens (see [visualization.md](./visualization.md)), and move on.
 
 ---
 
@@ -300,7 +310,7 @@ Present, refine, confirm.
 
 Propose 1–3 Vocation statements (5–15 words each).
 
-Present, refine, confirm.
+Present, refine, confirm. On confirmation, **update the Ikigai artifact** to reveal the Vocation label and synthesis in its lens. All four intersections are now revealed (see [visualization.md](./visualization.md)). Move on.
 
 ---
 
@@ -329,17 +339,19 @@ Which resonates most — the original, or one of these? Or would you combine ele
 
 **Refinement loop:** If user offers adjustments, incorporate and re-confirm: "Let me try again: [Updated synthesis]. Does this land better?"
 
-On confirmation, acknowledge and move on.
+On confirmation, acknowledge, then **trigger the center reveal** on the Ikigai artifact: fade in the center white circle, the inner Ikigai statement, and the callout block underneath the diagram with a 400ms transition (see [visualization.md](./visualization.md) § Center reveal animation). This is the visual reward for completing the exercise — make it feel like an arrival.
 
 ---
 
-## Stage 5: Final Summary & Render
+## Stage 5: Final Summary & Persistent Export
 
-### Completion Summary
+By Stage 5, the Ikigai artifact is fully rendered: all four circles populated, all four intersections revealed, center statement faded in. Stage 5 is recap and export — not first-time rendering.
 
-"Here's what we've built:
+### Textual recap
 
-**Your Ikigai Framework**
+Provide a concise textual summary alongside the visual so the user has something to copy:
+
+"Here's the full Ikigai we've built:
 
 - **What You Love:** [items]
 - **What You're Good At:** [items]
@@ -351,13 +363,16 @@ On confirmation, acknowledge and move on.
 - **Vocation:** [synthesis]
 - **Your Ikigai:** [center statement]"
 
-### Render the Output
+### Offer persistent exports
 
-Apply the Visualization & Final Output section above:
+Ask if the user wants a persistent copy:
 
-1. Default to inline rendering if the surface supports it (side panel JSX/HTML).
-2. Otherwise generate a markdown summary, with optional Word export.
-3. After the user has the visual, ask if they want a persistent copy in a `~~design tool` (Figma, Canva, Miro) for sharing or later editing.
+1. **Design-tool board.** If a `~~design tool` connector is available (Figma, Canva, Miro), offer to render the framework as an editable, shareable board: *"Want me to save this to a Figma board so you have a persistent, editable copy?"*
+2. **Word document.** Offer a Word/markdown export for a portable file.
+
+### Markdown-only fallback
+
+If the surface did not support inline rendering and no live artifact was built up across stages, generate the markdown summary as the primary deliverable now — all four circles, four intersections, and center synthesis structured clearly. Offer Word export.
 
 ---
 
