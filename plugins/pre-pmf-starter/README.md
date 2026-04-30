@@ -5,7 +5,7 @@ The **Waya Method** starter kit for **pre-product-market-fit founders**. A depen
 ## What's inside
 
 1. **`personal-ikigai`** ✅ — discover personal alignment with the business you're building (or considering). Surfaces your four circles (Love, Good At, Paid For, World Needs), four intersections (Passion, Profession, Mission, Vocation), and a center Ikigai statement. Then assesses fit with your existing business idea or generates 3–5 directions if you have none.
-2. **`pre-pmf-executive-summary`** 🚧 — turn the validated business direction into a complete executive summary covering idea exploration through seed fundraising.
+2. **`pre-pmf-executive-summary`** ✅ — turn the validated business direction into a complete pre-seed/seed executive summary covering problem hypothesis, solution + customer discovery, TAM/SAM/SOM with citations, business model and pricing, validation plan, team, and the ask. Renders progress through a live 7-section progress bar in Waya brand colors.
 3. **`mission-values-guide`** 🚧 — define a mission statement and 3–7 core values, synthesized from your Ikigai and executive summary.
 4. **`okr-workflow-pre-pmf`** 🚧 — convert mission and values into AI-assisted OKR planning oriented toward discovering PMF.
 
