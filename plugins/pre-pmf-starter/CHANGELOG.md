@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.0](https://github.com/wayaframes/waya-plugins/compare/pre-pmf-starter-v0.3.0...pre-pmf-starter-v0.4.0) (2026-04-30)
+
+
+### Features
+
+* **pre-pmf-starter:** port okr-workflow-pre-pmf — kit complete ([19df750](https://github.com/wayaframes/waya-plugins/commit/19df75049895fa192bd3d283e0449542ed0b1bf1))
+
+
+### Bug Fixes
+
+* unify visualization palettes onto canonical Waya brand colors ([80e88e8](https://github.com/wayaframes/waya-plugins/commit/80e88e8fcb71c7485f53089659550fcc39960b09))
+
 ## [0.3.0](https://github.com/wayaframes/waya-plugins/compare/pre-pmf-starter-v0.2.0...pre-pmf-starter-v0.3.0) (2026-04-30)
 
 
