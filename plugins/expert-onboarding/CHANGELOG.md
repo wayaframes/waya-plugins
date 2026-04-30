@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/wayaframes/waya-plugins/compare/expert-onboarding-v0.2.0...expert-onboarding-v0.3.0) (2026-04-30)
+
+
+### Features
+
+* **expert-onboarding:** progressive ikigai visualization spec ([b9669e1](https://github.com/wayaframes/waya-plugins/commit/b9669e115c8482d44f1732358ebe60c1cfdf4812))
+
 ## [0.2.0](https://github.com/wayaframes/waya-plugins/compare/expert-onboarding-v0.1.1...expert-onboarding-v0.2.0) (2026-04-29)
 
 
