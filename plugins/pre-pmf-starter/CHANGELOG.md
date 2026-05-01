@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.0](https://github.com/wayaframes/waya-plugins/compare/pre-pmf-starter-v0.4.0...pre-pmf-starter-v0.5.0) (2026-05-01)
+
+
+### Features
+
+* **pre-pmf-starter:** expand auto-invocation triggers and tighten skill transitions ([bd0e962](https://github.com/wayaframes/waya-plugins/commit/bd0e96295bddeed5792fdb9d183d11ba319b6450))
+* **pre-pmf-starter:** make completed exec summary sections click-to-expand ([67de7b3](https://github.com/wayaframes/waya-plugins/commit/67de7b35a76bfc4c92823d77fde21ea2ce47ce33))
+
 ## [0.4.0](https://github.com/wayaframes/waya-plugins/compare/pre-pmf-starter-v0.3.0...pre-pmf-starter-v0.4.0) (2026-04-30)
 
 
