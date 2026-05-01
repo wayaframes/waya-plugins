@@ -9,6 +9,17 @@ The **Waya Method** starter kit for **pre-product-market-fit founders**. A depen
 3. **`mission-values-guide`** ✅ — synthesize your Personal Ikigai and Pre-PMF Executive Summary into a mission statement and 3–7 core values with behavioral definitions, "in practice" examples, and "does not mean" clarifications. Renders progress through a 5-stage / 4-tab side-panel artifact in Waya brand colors.
 4. **`okr-workflow-pre-pmf`** ✅ — AI-assisted OKR planning oriented toward discovering PMF: annual goal setting, quarterly planning, grading previous periods, and mid-year onboarding. Produces 3–5 typed key results (Delta / Zero-Start / Binary / Threshold) per OKR with devil's advocate guards. Renders progress through a session-adaptive multi-stage tracker with Grading, Annual Review, OKRs, and Summary tabs.
 
+## Try asking...
+
+Type any of these into chat — the right skill auto-invokes. No slash command needed.
+
+- *"Help me figure out what's right for me to build"* → personal Ikigai
+- *"I'm starting a company — where do I begin?"* → starts with Ikigai, threads into the kit
+- *"Write a pitch for my early-stage company"* → executive summary (build mode)
+- *"Refresh my pitch with our latest traction"* → executive summary (refresh mode)
+- *"Define what our company stands for"* → mission and values
+- *"Plan goals for the next quarter"* → quarterly OKRs
+
 ## Install
 
 ```sh
