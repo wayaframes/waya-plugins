@@ -130,7 +130,7 @@ Build executive summaries through structured, iterative questioning that educate
 
 The skill renders a **single live progress bar artifact** — 7 sections, vertically stacked, each with a status (not_started / in_progress / complete). The user watches it fill in over the session.
 
-**See [visualization.md](./visualization.md)** for the full rendering specification — Waya brand color palette, layout rules, behavioral rules (only one section in_progress at a time, completed sections collapsed, etc.), the per-section field data model, the update sequence, and acceptance criteria.
+**See [visualization.md](./visualization.md)** for the full rendering specification — Waya brand color palette, layout rules, behavioral rules (only one section in_progress at a time, completed sections collapsed by default but click-to-expand, etc.), the per-section field data model, the update sequence, and acceptance criteria.
 
 Surface fallback hierarchy:
 
