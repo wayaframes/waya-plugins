@@ -1,6 +1,6 @@
 ---
 name: mission-values-guide
-description: Guide founders through defining their company's mission statement and 3-7 core values by synthesizing insights from their completed Personal Ikigai and Pre-PMF Executive Summary. Use when a founder mentions wanting to define company mission, values, identity, culture, or "what we stand for" — especially when they've completed prior steps in this kit, or when they describe team alignment work. For multi-founder teams, analyzes themes across each founder's Ikigai to find shared core values. Output is a finalized mission statement plus 3-7 ranked core values with behavioral definitions, "in practice" examples, and "does not mean" clarifications. Renders progress through a 5-stage side-panel artifact (Prerequisites → Synthesis → Mission → Values → Final) in Waya brand colors.
+description: Guide founders through defining their company's mission statement and 3-7 core values by synthesizing insights from their completed Personal Ikigai and Pre-PMF Executive Summary. Use when a founder mentions wanting to define company mission, values, identity, culture, or "what we stand for" — especially when they've completed prior steps in this kit, or when they describe team alignment work. Also use when a founder asks to refresh, validate, or pressure-test existing mission and values; when they want to check whether the mission still holds against a strategy shift; or when team alignment friction surfaces and the underlying mission/values may be the missing anchor. For multi-founder teams, analyzes themes across each founder's Ikigai to find shared core values. Output is a finalized mission statement plus 3-7 ranked core values with behavioral definitions, "in practice" examples, and "does not mean" clarifications. Renders progress through a 5-stage side-panel artifact (Prerequisites → Synthesis → Mission → Values → Final) in Waya brand colors.
 ---
 
 # Waya Method: Mission & Values Guide — Company Identity Definition
@@ -575,7 +575,9 @@ After completing your mission and values, the natural next step in the **pre-pmf
 
 Ask the user: *"Ready to move on to OKRs, or would you like to pause here?"*
 
-If user wants to proceed, transition into the `okr-workflow-pre-pmf` skill, passing through:
+**Invocation behavior on the user's response.** When the user affirms — even loosely, even alongside other tasks like *"save this first"* or *"sure, but let me also..."* — invoke `okr-workflow-pre-pmf` immediately via the Skill tool. Do not ask a second confirmation question. If the user's reply references existing material the next skill produces — *"we already have OKRs from last quarter"*, *"we have goals written down somewhere"*, *"may have most of what we need"* — invoke `okr-workflow-pre-pmf` with the referenced artifact as the baseline (grading + refresh path). Treat the prior recommendation + a domain-relevant response as a single invocation signal, not two separate decisions.
+
+When invoking, pass through:
 
 - Company name
 - Mission statement

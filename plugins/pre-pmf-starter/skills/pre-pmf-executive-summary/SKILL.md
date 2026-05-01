@@ -1,6 +1,6 @@
 ---
 name: pre-pmf-executive-summary
-description: Guide an early-stage founder through creating a pre-seed/seed executive summary covering problem hypothesis, solution and customer discovery, market opportunity (TAM/SAM/SOM with citations), business model and pricing, validation plan, team and founder-market fit, and the ask. Builds on prior Personal Ikigai work if available, otherwise offers to run that first. Use when a founder is exploring an idea, doing customer discovery or market research, has a prototype but no paying customers, or needs to crystallize their plan for early fundraising. NOT for founders with proven traction, ARR, or growth metrics — that case wants a post-PMF executive summary instead. Output is a one-page pre-PMF executive summary plus a progressive 7-section progress bar artifact tracking completion through the session.
+description: Guide an early-stage founder through creating a pre-seed/seed executive summary covering problem hypothesis, solution and customer discovery, market opportunity (TAM/SAM/SOM with citations), business model and pricing, validation plan, team and founder-market fit, and the ask. Builds on prior Personal Ikigai work if available, otherwise offers to run that first. Use when a founder is exploring an idea, doing customer discovery or market research, has a prototype but no paying customers, or needs to crystallize their plan for early fundraising. Also use when a founder mentions refreshing, updating, reviewing, or revising an existing executive summary; when they have one "somewhere" that needs a pass; when they want to align an exec summary with new traction, a strategy shift, or recent learnings; or when they reference existing pitch material that needs to be brought current. NOT for founders with proven traction, ARR, or growth metrics — that case wants a post-PMF executive summary instead. Output is a one-page pre-PMF executive summary plus a progressive 7-section progress bar artifact tracking completion through the session.
 ---
 
 # Waya Method: Pre-PMF Executive Summary
@@ -130,7 +130,7 @@ Build executive summaries through structured, iterative questioning that educate
 
 The skill renders a **single live progress bar artifact** — 7 sections, vertically stacked, each with a status (not_started / in_progress / complete). The user watches it fill in over the session.
 
-**See [visualization.md](./visualization.md)** for the full rendering specification — Waya brand color palette, layout rules, behavioral rules (only one section in_progress at a time, completed sections collapsed, etc.), the per-section field data model, the update sequence, and acceptance criteria.
+**See [visualization.md](./visualization.md)** for the full rendering specification — Waya brand color palette, layout rules, behavioral rules (only one section in_progress at a time, completed sections collapsed by default but click-to-expand, etc.), the per-section field data model, the update sequence, and acceptance criteria.
 
 Surface fallback hierarchy:
 
@@ -1051,7 +1051,9 @@ After completing your executive summary, the natural next steps in the **pre-pmf
 
 Ask the user: *"Ready to move on to mission and values, or would you like to pause here?"*
 
-If user wants to proceed, transition into the `mission-values-guide` skill, passing through:
+**Invocation behavior on the user's response.** When the user affirms — even loosely, even alongside other tasks like *"save this first"* or *"sure, but let me also..."* — invoke `mission-values-guide` immediately via the Skill tool. Do not ask a second confirmation question. If the user's reply references existing material the next skill produces — *"we have a mission and values draft somewhere"*, *"we already wrote core values"*, *"may have most of what we need"* — invoke `mission-values-guide` in refresh mode with the referenced artifact as the baseline. Treat the prior recommendation + a domain-relevant response as a single invocation signal, not two separate decisions.
+
+When invoking, pass through:
 
 - Company name (or working name)
 - Problem hypothesis

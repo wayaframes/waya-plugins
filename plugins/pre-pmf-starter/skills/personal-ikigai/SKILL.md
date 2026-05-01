@@ -1,6 +1,6 @@
 ---
 name: personal-ikigai
-description: Guide a founder through a personal Ikigai discovery process to ensure alignment between who they are and the business they are building (or considering). Surfaces what they love, what they are good at, what they can be paid for, and what the world needs; synthesizes the four intersections (Passion, Profession, Mission, Vocation); arrives at a center Ikigai statement; then assesses fit with their existing business idea or generates 3–5 directions if they have none. Use when a founder asks about Ikigai, founder-market fit, alignment, "what should I build", or whether they are building the right thing. Output renders as a progressive four-circle artifact inline (or in Figma/Canva via connector). Concludes with a recommended path through the rest of the pre-pmf-starter kit.
+description: Guide a founder through a personal Ikigai discovery process to ensure alignment between who they are and the business they are building (or considering). Surfaces what they love, what they are good at, what they can be paid for, and what the world needs; synthesizes the four intersections (Passion, Profession, Mission, Vocation); arrives at a center Ikigai statement; then assesses fit with their existing business idea or generates 3–5 directions if they have none. Use when a founder asks about Ikigai, founder-market fit, alignment, "what should I build", or whether they are building the right thing. Also use when a founder mentions personal alignment, what energizes them, founder fit doubts, "am I the right person for this", or wants to revisit/refresh an existing Ikigai against new context. Output renders as a progressive four-circle artifact inline (or in Figma/Canva via connector). Concludes with a recommended path through the rest of the pre-pmf-starter kit.
 ---
 
 # Waya Method: Personal Ikigai Guide — Founder-Business Alignment Discovery
@@ -523,7 +523,9 @@ After completing this Ikigai and business-direction work, the natural next steps
 
 Ask the user: *"Ready to move on to the next step? I can take you through `pre-pmf-executive-summary` next, or you can pick the chain back up when you're ready."*
 
-If user wants to proceed, transition into the `pre-pmf-executive-summary` skill, passing through:
+**Invocation behavior on the user's response.** When the user affirms — even loosely, even alongside other tasks like *"save this first"* or *"sure, but let me also..."* — invoke `pre-pmf-executive-summary` immediately via the Skill tool. Do not ask a second confirmation question. If the user's reply references existing material the next skill produces — *"I have an exec summary somewhere"*, *"we already have a pitch deck"*, *"may have most of what we need"*, *"there's a business plan from last year"* — invoke `pre-pmf-executive-summary` in refresh mode with the referenced artifact as the baseline. Treat the prior recommendation + a domain-relevant response as a single invocation signal, not two separate decisions.
+
+When invoking, pass through:
 
 - The full Ikigai framework
 - The 1–2 confirmed business direction(s)

@@ -45,9 +45,11 @@ On surfaces that support in-place artifact updates, emit the artifact once after
 
 Exactly one section has status `in_progress`. All others are either `complete` (collapsed, green) or `not_started` (collapsed, grey). The `in_progress` section must always match the section of the question currently being asked.
 
-### 7. Completed sections are collapsed; only headers visible
+### 7. Completed sections are collapsed by default but click-to-expand
 
-Once a section transitions from `in_progress` to `complete`, its fields collapse and only the section header (now green with `#F1EFDD` background) remains visible. Do not re-expand completed sections. The user can see at most: one previous (completed) section header, the full current section with fields, and one next (not started) section header — all fitting within the visible page area.
+Once a section transitions from `in_progress` to `complete`, its fields collapse and only the section header (now green with `#F1EFDD` background) remains visible by default. **Completed sections must be click-to-expand**: clicking the section header reveals the captured fields in place; clicking again collapses. Use a native `<details>`/`<summary>` element with the default disclosure marker hidden and a CSS chevron that rotates on `[open]`. Captured field data must be persisted in the artifact for ALL completed sections (not only the in-progress one) so click-to-expand has data to reveal on demand.
+
+Default visual state stays as specified — the user sees at most one previous (completed) section header, the full current section with fields, and one next (not started) section header. Expanding a completed section is a deliberate user action for review, not the default.
 
 ### 8. No emojis anywhere in the progress bar
 
@@ -144,7 +146,9 @@ Above or below the section list (designer's choice — pick what reads best at n
 
 - Section header background: `#F1EFDD` light green
 - Section header text: `#759C8B` green
-- Section is **collapsed** — no fields visible
+- Section is **collapsed by default** — no fields visible
+- **Click-to-expand**: clicking the section header expands the fields in place; clicking again collapses. Implement via `<details>`/`<summary>` with the native marker hidden
+- Chevron indicator rotates on `[open]` to signal state (CSS-drawn, no emoji)
 - Optional: small green checkmark or completion indicator (without using emoji — use a CSS-drawn checkmark or just the color shift)
 
 ### Section transition (`in_progress` → `complete`)
@@ -238,10 +242,13 @@ Below is the canonical structure for the rendered artifact. **Adapt** by substit
   .pmf-section.in-progress { background: #ffffff; }
   .pmf-section.in-progress .pmf-section-header { color: #C37028; }
 
-  /* complete */
+  /* complete (click-to-expand via <details>) */
   .pmf-section.complete { background: #F1EFDD; }
-  .pmf-section.complete .pmf-section-header { color: #759C8B; }
-  .pmf-section.complete .pmf-section-fields { max-height: 0; }
+  .pmf-section.complete > summary { cursor: pointer; list-style: none; display: flex; align-items: center; padding: 12px 14px; color: #759C8B; }
+  .pmf-section.complete > summary::-webkit-details-marker { display: none; }
+  .pmf-section.complete .pmf-chevron { display: inline-block; width: 8px; height: 8px; margin-left: auto; border-right: 2px solid #759C8B; border-bottom: 2px solid #759C8B; transform: rotate(-45deg); transition: transform 200ms ease; }
+  .pmf-section.complete[open] .pmf-chevron { transform: rotate(45deg); }
+  .pmf-section.complete .pmf-section-fields { max-height: none; padding: 4px 14px 14px 44px; }
 
   /* fields */
   .pmf-field { display: flex; align-items: flex-start; margin: 6px 0; font-size: 13px; }
@@ -256,16 +263,28 @@ Below is the canonical structure for the rendered artifact. **Adapt** by substit
     <div class="pmf-overall-fill" style="width: {COMPLETED_COUNT}/7 * 100%;"></div>
   </div>
 
-  <!-- Section 1 — Company & Problem -->
-  <div class="pmf-section complete">
-    <div class="pmf-section-header">
+  <!-- Section 1 — Company & Problem (complete; click-to-expand) -->
+  <details class="pmf-section complete">
+    <summary>
       <span class="pmf-section-num">1</span>
       <span class="pmf-section-name">Company & Problem</span>
-    </div>
+      <span class="pmf-chevron"></span>
+    </summary>
     <div class="pmf-section-fields">
-      <!-- collapsed when complete; fields not visible -->
+      <!-- captured fields persist here for review on expand -->
+      <div class="pmf-field captured">
+        <div class="pmf-field-circle"></div>
+        <div class="pmf-field-label">Problem hypothesis</div>
+        <div class="pmf-field-value">{CAPTURED_SUMMARY_TRUNCATED}</div>
+      </div>
+      <div class="pmf-field captured">
+        <div class="pmf-field-circle"></div>
+        <div class="pmf-field-label">Target customer</div>
+        <div class="pmf-field-value">{CAPTURED_SUMMARY_TRUNCATED}</div>
+      </div>
+      <!-- ...remaining captured fields for Section 1... -->
     </div>
-  </div>
+  </details>
 
   <!-- Section 2 — Solution & Discovery (currently in progress) -->
   <div class="pmf-section in-progress">
@@ -320,7 +339,9 @@ Below is the canonical structure for the rendered artifact. **Adapt** by substit
 ### How to adapt the template
 
 - **Section state classes**: every `.pmf-section` element has exactly one of `not-started`, `in-progress`, `complete`. As the skill progresses, swap classes. The CSS handles all the visual transitions.
+- **Element type per state**: `not-started` and `in-progress` sections render as `<div class="pmf-section ...">`. `complete` sections render as `<details class="pmf-section complete">` with a `<summary>` for the header — this gives click-to-expand for free.
 - **Field captured state**: add `.captured` to a `.pmf-field` once that field is filled. The circle fills green and the value text appears.
+- **Field persistence on completion**: when transitioning a section from `in-progress` to `complete`, retain all captured field markup inside the `<details>` body. Do not strip the captured fields — they must be available when the user clicks to expand.
 - **Field summaries**: keep them under ~50 chars. Truncate with ellipsis if longer.
 - **Progress bar fill width**: calculate inline as `(completed_count / 7) * 100%`.
 - **Forbidden**: do NOT also output a separate `<div>` or markdown list of captured fields below the artifact. The progress bar is the only place this data renders.
@@ -333,7 +354,7 @@ The visualization is correct when:
 
 1. The progress bar appears after **Section 1, Question 1 is answered** (not on the first message).
 2. Exactly one section is `in_progress` at any time, with its fields visible.
-3. Completed sections are collapsed (`#F1EFDD` background) with only the header visible.
+3. Completed sections are collapsed by default (`#F1EFDD` background) with only the header visible. Clicking a completed section header expands it to reveal the captured fields; clicking again collapses. A chevron indicates open/closed state.
 4. Not-started sections are collapsed and grey-text headers only.
 5. The four state colors (`#39403A`, `#759C8B`, `#F1EFDD`, `#C37028`) and the progress fill (`#F3B742`) are applied exactly — no substituted greys/greens/yellows.
 6. The artifact renders cleanly at 480px without text overflow or unreadable fonts.
